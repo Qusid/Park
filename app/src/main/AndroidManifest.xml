@@ -18,6 +18,9 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"></activity>
         <activity android:name=".SplashScreenAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +46,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
             </intent-filter>
         </activity>
     </application>
