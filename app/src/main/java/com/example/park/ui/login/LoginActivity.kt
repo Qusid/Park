@@ -109,6 +109,7 @@ class LoginActivity : AppCompatActivity() {
     fun Gotomain(view: View) {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        //ffgit
     }
     //till here
 
