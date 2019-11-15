@@ -104,14 +104,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-
-    // my stupid code
-    fun Gotomain(view: View) {
+    // Go To Main Screen
+    fun goToMain(view: View) {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         //ffgit
     }
-    //till here
 
 
 
