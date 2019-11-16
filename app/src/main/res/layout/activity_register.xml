@@ -14,12 +14,28 @@
         android:paddingRight="24dp">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
-            android:onClick="goToMain"
-            android:src="@drawable/logo" />
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_person_black_24dp"
+            android:visibility="visible" />
+
+        <!--  Name Label -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:inputType="textCapWords" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Email Label -->
         <com.google.android.material.textfield.TextInputLayout
@@ -51,32 +67,27 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Signup Button -->
         <android.widget.Button
-            android:id="@+id/login"
+            android:id="@+id/btn_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:background="#7C0303"
+            android:onClick="rigist"
             android:padding="12dp"
-            android:text="Login" />
+            android:text="Create Account" />
 
         <TextView
-            android:id="@+id/link_signup"
+            android:id="@+id/link_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:gravity="center"
-            android:onClick="rigist"
-            android:text="No account yet? Create one"
+            android:onClick="login"
+            android:text="Already a member? Login"
             android:textSize="16dip" />
-
-        <ProgressBar
-            android:id="@+id/loading"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible" />
 
     </LinearLayout>
 </ScrollView>

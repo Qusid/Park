@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "580166945995",
+    "firebase_url": "https://first-bit-253702.firebaseio.com",
+    "project_id": "first-bit-253702",
+    "storage_bucket": "first-bit-253702.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580166945995:android:c029a1af5426481bd81f4e",
+        "android_client_info": {
+          "package_name": "com.example.park"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580166945995-f76u0skgl80j5398bntq5rlmk1jrkqk0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-IbKryVlQs0ZcMCv753QaZIDiGTfct04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580166945995-f76u0skgl80j5398bntq5rlmk1jrkqk0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

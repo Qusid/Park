@@ -9,6 +9,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
@@ -18,17 +19,22 @@ import android.widget.Toast
 import com.example.park.MainActivity
 
 import com.example.park.R
+import com.example.park.Register
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
-
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
 
 
+          // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
 
 
 
@@ -100,9 +106,15 @@ class LoginActivity : AppCompatActivity() {
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
             }
-        }
-    }
 
+        }
+
+
+    }
+    fun rigist(view:View) {
+        val intent = Intent(this, Register::class.java)
+        startActivity(intent)
+    }
 
     // Go To Main Screen
     fun goToMain(view: View) {
@@ -114,19 +126,52 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome)
-        val displayName = model.displayName
-        // TODO : initiate successful logged in experience
-        Toast.makeText(
-            applicationContext,
-            "$welcome $displayName",
-            Toast.LENGTH_LONG
-        ).show()
+        loading.setVisibility(View.VISIBLE); //to show
+
+        auth.signInWithEmailAndPassword(username.text.toString(), password.text.toString())
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    // Log.d(TAG, "signInWithEmail:success")
+
+                    Toast.makeText(
+                        baseContext, "Authentic true.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    val user = auth.currentUser
+
+                    Toast.makeText(
+                        baseContext, "Authentic true for ${user}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    //Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext, "Authentication failed stoopid ass bitch .",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    // updateUI(null)
+                }
+
+                // ...
+            }
+
+        loading.setVisibility(View.GONE);
+
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
+
+
+
 }
 
 /**
@@ -142,4 +187,6 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
 
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
     })
+
+
 }
