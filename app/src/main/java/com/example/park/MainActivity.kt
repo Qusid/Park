@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
     override fun onMapReady(map: GoogleMap) {
 
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(48.4205048, -89.2585114),17f))
-
+        map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             == PackageManager.PERMISSION_GRANTED) {
