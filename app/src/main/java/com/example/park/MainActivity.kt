@@ -14,6 +14,16 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.location.Location
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
 
@@ -27,7 +37,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-
+        //for testing only
+        val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
+        ActivityCompat.requestPermissions(this, permissions,0)
 
         mMapView = findViewById(R.id.mapView)
         initGoogleMap(savedInstanceState)
@@ -52,9 +64,18 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
     }
 
     override fun onMapReady(map: GoogleMap) {
-        map.addMarker(MarkerOptions().position(LatLng(48.4205048, -89.2585114)).title("Marker"))
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(48.4205048, -89.2585114),17f));
+
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(48.4205048, -89.2585114),17f))
+
         checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
+            map.setMyLocationEnabled(true);
+        } else {
+            // Show rationale and request permission.
+
+            Toast.makeText(this@MainActivity, "no permission", Toast.LENGTH_SHORT).show()
+        }
         print(true)
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -64,6 +85,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
+
             return
         } else {
             shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)
