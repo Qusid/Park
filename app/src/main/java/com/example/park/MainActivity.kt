@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -51,6 +52,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
     }
 
     override fun onMapReady(map: GoogleMap) {
+        map.addMarker(MarkerOptions().position(LatLng(48.4205048, -89.2585114)).title("Marker"))
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(48.4205048, -89.2585114),17f));
         checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
         print(true)
         if (ActivityCompat.checkSelfPermission(
@@ -67,8 +70,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
             shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION)
             return
         }
-        map.isMyLocationEnabled = true
-        map.addMarker(MarkerOptions().position(LatLng(0.0, 0.0)).title("Marker"))
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
