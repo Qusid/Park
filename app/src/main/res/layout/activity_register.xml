@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:background="#7C0303"
+            android:background="#17B0F0"
             android:onClick="rigist"
             android:padding="12dp"
             android:text="Create Account" />
@@ -86,7 +86,7 @@
             android:layout_marginBottom="24dp"
             android:gravity="center"
             android:onClick="login"
-            android:text="Already a member? Login"
+            android:text="Already a member?\n Login"
             android:textSize="16dip" />
 
     </LinearLayout>

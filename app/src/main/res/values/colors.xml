@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#789544</color>
+    <color name="colorPrimaryDark">#060439</color>
+    <color name="colorAccent">#FEC100</color>
+    <color name="njbb">#EEEBED</color>
+
+    <!--
+    Original Color Scheme (Final Release)
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#8F0034</color>
+    <color name="colorAccent">#FFFFFF</color>
     <color name="njbb">#EEEBED</color>
+
+    -->
+
 </resources>

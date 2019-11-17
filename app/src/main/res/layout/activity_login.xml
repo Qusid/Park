@@ -19,7 +19,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
             android:onClick="goToMain"
-            android:src="@drawable/logo" />
+            android:src="@mipmap/ic_launcher_round" />
 
         <!-- Email Label -->
         <com.google.android.material.textfield.TextInputLayout
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:background="#7C0303"
+            android:background="#17B0F0"
             android:padding="12dp"
             android:text="Login" />
 
@@ -68,7 +68,7 @@
             android:layout_marginBottom="24dp"
             android:gravity="center"
             android:onClick="rigist"
-            android:text="No account yet? Create one"
+            android:text="No account yet?\n Sign Up"
             android:textSize="16dip" />
 
         <ProgressBar
@@ -77,6 +77,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="goToMain"
+            android:text="skip cuz I dont wanna sign up"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     </LinearLayout>
 </ScrollView>
