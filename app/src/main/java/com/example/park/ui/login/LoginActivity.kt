@@ -21,7 +21,9 @@ import com.example.park.MainActivity
 import com.example.park.R
 import com.example.park.Register
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
+import java.sql.Types.NULL
 
 class LoginActivity : AppCompatActivity() {
 
@@ -111,6 +113,14 @@ class LoginActivity : AppCompatActivity() {
 
 
     }
+
+
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        updateUI(currentUser)
+    }
     fun rigist(view:View) {
         val intent = Intent(this, Register::class.java)
         startActivity(intent)
@@ -123,7 +133,12 @@ class LoginActivity : AppCompatActivity() {
         //ffgit
     }
 
-
+    fun updateUI(currentUser: FirebaseUser?){
+        if(currentUser!=null){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
         loading.setVisibility(View.VISIBLE); //to show

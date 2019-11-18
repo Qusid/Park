@@ -21,21 +21,47 @@ import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.view.Menu
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.example.park.ui.login.LoginActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
 
     private var mMapView: MapView? = null
-
     val mapViewBundleKey = "MapViewBundleKey"
+
+
+
+
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
+
+
+
+
+
+
+
+
 
         //for testing only
         val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -62,6 +88,15 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
 
 
     }
+
+
+
+
+
+
+
+
+
 
     override fun onMapReady(map: GoogleMap) {
 
@@ -115,6 +150,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
     override fun onStart() {
         super.onStart()
         mMapView!!.onStart()
+
     }
 
     override fun onStop() {
@@ -137,4 +173,17 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         super.onLowMemory()
         mMapView!!.onLowMemory()
     }
+
+
+    fun set(view:View){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+    fun signout(view:View){
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+    }
+
+
 }

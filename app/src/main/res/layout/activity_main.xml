@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
@@ -30,10 +33,11 @@
             android:id="@+id/button3"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/darker_gray"
-            android:text="uhh..." />
+            android:onClick="signout"
+            android:text="@string/sign_out" />
 
         <Button
             android:id="@+id/parkButton"
@@ -47,10 +51,11 @@
             android:id="@+id/button5"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/darker_gray"
-            android:text="Settings"
+            android:onClick="set"
+            android:text="@string/settings"
             android:textColorLink="@android:color/holo_red_dark" />
     </LinearLayout>
 
