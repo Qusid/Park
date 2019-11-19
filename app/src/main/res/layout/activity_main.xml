@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/darker_gray"
+            android:background="@color/ic_launcher_background"
             android:onClick="signout"
             android:text="@string/sign_out" />
 
@@ -45,7 +45,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@android:color/holo_blue_bright"
-            android:text="Park" />
+            android:onClick="park"
+            android:text="@string/app_name" />
 
         <Button
             android:id="@+id/button5"
@@ -53,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/darker_gray"
+            android:background="@color/ic_launcher_background"
             android:onClick="set"
             android:text="@string/settings"
             android:textColorLink="@android:color/holo_red_dark" />

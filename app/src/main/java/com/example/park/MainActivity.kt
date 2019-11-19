@@ -13,29 +13,18 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.location.Location
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.view.Menu
+
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+
 import com.example.park.ui.login.LoginActivity
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
+
+import com.example.park.datastore
+
+
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
@@ -184,6 +173,12 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
+    fun park(view:View){
 
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("message")
+
+        myRef.setValue("Hello, Sanajana!")
+    }
 
 }
