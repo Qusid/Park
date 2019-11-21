@@ -2,6 +2,8 @@ package com.example.park
 
 import android.Manifest
 import android.app.PendingIntent.getActivity
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -15,27 +17,35 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AlertDialog
+
 import androidx.core.content.ContextCompat
 
 import com.example.park.ui.login.LoginActivity
 
-import com.example.park.datastore
-
-
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import android.location.Criteria
+
+import android.location.LocationManager
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.IgnoreExtraProperties
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
-
+    private lateinit var database: DatabaseReference
     private var mMapView: MapView? = null
     val mapViewBundleKey = "MapViewBundleKey"
 
 
 
 
-
+    @IgnoreExtraProperties
+    data class User(
+        var lat: Double? ,
+        var long: Double?
+    )
 
 
 
@@ -175,10 +185,62 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
     }
     fun park(view:View){
 
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("message")
+            // build alert dialog
+            val dialogBuilder = AlertDialog.Builder(this)
 
-        myRef.setValue("Hello, Sanajana!")
+            // set message of alert dialog
+            dialogBuilder.setMessage("aRE you SURE to park ? ")
+                // if the dialog is cancelable
+                .setCancelable(false)
+                // positive button text and action
+                .setPositiveButton("yes", DialogInterface.OnClickListener {
+                        dialog, id ->
+                    val locationManager =
+                        getSystemService(Context.LOCATION_SERVICE) as LocationManager
+                    val criteria = Criteria()
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED) {
+                        val location = locationManager.getLastKnownLocation(
+                            locationManager.getBestProvider(
+                                criteria,
+                                false
+                            )
+                        )
+                        val lat = location.latitude
+                        val lng = location.longitude
+                        var currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser()
+
+
+                        if(currentFirebaseUser !=null) {
+                            writeNewUser(currentFirebaseUser.uid, lat, lng)
+                        }
+
+
+
+                    }
+
+
+
+
+
+                })
+                // negative button text and action
+                .setNegativeButton("No", DialogInterface.OnClickListener {
+                        dialog, id -> dialog.cancel()
+                })
+
+            // create dialog box
+            val alert = dialogBuilder.create()
+            // set title for alert dialog box
+            alert.setTitle("AlertDialogExample")
+            // show alert dialog
+            alert.show()
+        }
+
+    private fun writeNewUser(userId: String, Lat: Double?, Long: Double?) {
+        val user = User(Lat, Long)
+        database = FirebaseDatabase.getInstance().reference
+        database.child("users").child(userId).setValue(user)
     }
 
 }

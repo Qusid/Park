@@ -78,13 +78,5 @@
             android:layout_height="wrap_content"
             android:visibility="invisible" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="goToMain"
-            android:text="skip cuz I dont wanna sign up"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
     </LinearLayout>
 </ScrollView>
