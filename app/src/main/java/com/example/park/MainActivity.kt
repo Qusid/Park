@@ -28,9 +28,12 @@ import com.google.firebase.database.FirebaseDatabase
 import android.location.Criteria
 
 import android.location.LocationManager
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.IgnoreExtraProperties
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
@@ -38,7 +41,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
     private var mMapView: MapView? = null
     val mapViewBundleKey = "MapViewBundleKey"
 
-
+    private  var mapet: GoogleMap? = null
 
 
     @IgnoreExtraProperties
@@ -98,7 +101,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
 
 
     override fun onMapReady(map: GoogleMap) {
-
+        mapet = map
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(48.4205048, -89.2585114),17f))
         map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -214,8 +217,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
                         if(currentFirebaseUser !=null) {
                             writeNewUser(currentFirebaseUser.uid, lat, lng)
                         }
-
-
+                        markpark(mapet,lat,lng)
 
                     }
 
@@ -241,6 +243,16 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         val user = User(Lat, Long)
         database = FirebaseDatabase.getInstance().reference
         database.child("users").child(userId).setValue(user)
+    }
+
+    fun markpark(Mapp : GoogleMap?,lat: Double,long: Double){
+
+        var mapp : GoogleMap?  = Mapp
+        if(Mapp!=null)
+        Mapp.addMarker(MarkerOptions().position(LatLng(lat,long)).title("Car Parked here!!")).showInfoWindow()
+
+
+
     }
 
 }
