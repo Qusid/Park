@@ -24,17 +24,17 @@ import androidx.core.content.ContextCompat
 import com.example.park.ui.login.LoginActivity
 
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import android.location.Criteria
 
 import android.location.LocationManager
+import android.util.Log
+import android.widget.Button
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.IgnoreExtraProperties
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
-
+import com.google.firebase.database.DataSnapshot
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
     private lateinit var database: DatabaseReference
@@ -46,21 +46,17 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
 
     @IgnoreExtraProperties
     data class User(
-        var lat: Double? ,
-        var long: Double?
+        var lat: Double = 0.0,
+        var long: Double = 0.0
+
     )
 
-
-
+    var usert: User? = null
+    var dou : Double = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-
-
-
-
-
 
 
 
@@ -71,6 +67,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
 
         mMapView = findViewById(R.id.mapView)
         initGoogleMap(savedInstanceState)
+
+
+
+
+
 
     }
 
@@ -113,6 +114,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
 
             Toast.makeText(this@MainActivity, "no permission", Toast.LENGTH_SHORT).show()
         }
+
         print(true)
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -181,6 +183,29 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
+
+
+    fun Locate(view:View){
+
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+        val rootRef = FirebaseDatabase.getInstance().reference
+        val uidRef = rootRef.child("users").child(uid)
+        val valueEventListener = object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val user = dataSnapshot.getValue(User::class.java)
+                if(user!=null)
+                    markpark(mapet, user.lat, user.long)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                //Log.d(TAG, databaseError.message) //Don't ignore errors!
+            }
+        }
+        uidRef.addListenerForSingleValueEvent(valueEventListener)
+    }
+
+
     fun signout(view:View){
         FirebaseAuth.getInstance().signOut()
         val intent = Intent(this, LoginActivity::class.java)
@@ -239,15 +264,14 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
             alert.show()
         }
 
-    private fun writeNewUser(userId: String, Lat: Double?, Long: Double?) {
+    private fun writeNewUser(userId: String, Lat: Double, Long: Double) {
         val user = User(Lat, Long)
         database = FirebaseDatabase.getInstance().reference
         database.child("users").child(userId).setValue(user)
+        var dataSnapshot: DatabaseReference = database.child("users").child(userId)
     }
 
     fun markpark(Mapp : GoogleMap?,lat: Double,long: Double){
-
-        var mapp : GoogleMap?  = Mapp
         if(Mapp!=null)
         Mapp.addMarker(MarkerOptions().position(LatLng(lat,long)).title("Car Parked here!!")).showInfoWindow()
 
