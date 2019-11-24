@@ -51,8 +51,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
 
     )
 
-    var usert: User? = null
-    var dou : Double = 0.0
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
