@@ -24,10 +24,10 @@ import androidx.core.content.ContextCompat
 import com.example.park.ui.login.LoginActivity
 
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import android.location.Criteria
 
 import android.location.LocationManager
+import android.util.Log
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.widget.AdapterView
@@ -36,8 +36,7 @@ import android.widget.Toast.LENGTH_SHORT
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.IgnoreExtraProperties
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -51,8 +50,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
 
     @IgnoreExtraProperties
     data class User(
-        var lat: Double? ,
-        var long: Double?
+        var lat: Double = 0.0 ,
+        var long: Double = 0.0
     )
 
 
@@ -96,7 +95,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.set1 -> {
-                Toast.makeText(this, "Contact Us Selected", Toast.LENGTH_LONG).show()
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
                 true
             }
             R.id.set2 -> {
@@ -216,10 +217,21 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
-    fun signout(view:View){
-        FirebaseAuth.getInstance().signOut()
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+    fun parkout(view:View){
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+        val rootRef = FirebaseDatabase.getInstance().reference
+        val uidRef = rootRef.child("users").child(uid)
+        val valueEventListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val user = dataSnapshot.getValue(User::class.java)
+                markpark(mapet,user!!.lat,user!!.long)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+               // Log.d(TAG, databaseError.message) //Don't ignore errors!
+            }
+        }
+        uidRef.addListenerForSingleValueEvent(valueEventListener)
     }
     fun park(view:View){
 
@@ -274,7 +286,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
             alert.show()
         }
 
-    private fun writeNewUser(userId: String, Lat: Double?, Long: Double?) {
+    private fun writeNewUser(userId: String, Lat: Double, Long: Double) {
         val user = User(Lat, Long)
         database = FirebaseDatabase.getInstance().reference
         database.child("users").child(userId).setValue(user)

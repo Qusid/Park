@@ -36,8 +36,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/ic_launcher_background"
-            android:onClick="signout"
-            android:text="@string/sign_out" />
+            android:onClick="parkout"
+            android:text="@string/locate" />
 
         <Button
             android:id="@+id/parkButton"

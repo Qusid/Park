@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item
     android:id="@+id/set1"
-    android:title="Contact us"
+    android:title="Sign out"
     />
     <item
         android:id="@+id/set2"
