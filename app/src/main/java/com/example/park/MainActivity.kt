@@ -28,6 +28,11 @@ import com.google.firebase.database.FirebaseDatabase
 import android.location.Criteria
 
 import android.location.LocationManager
+import android.view.ContextMenu
+import android.view.MenuItem
+import android.widget.AdapterView
+import android.widget.Button
+import android.widget.Toast.LENGTH_SHORT
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseUser
@@ -62,9 +67,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
 
 
 
-
-
-
         //for testing only
         val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
         ActivityCompat.requestPermissions(this, permissions,0)
@@ -72,6 +74,37 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         mMapView = findViewById(R.id.mapView)
         initGoogleMap(savedInstanceState)
 
+        var setting = findViewById<Button>(R.id.button5)
+
+        registerForContextMenu(setting)
+
+    }
+
+    fun openFun(v: View){
+        openContextMenu(v)
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        menuInflater.inflate(R.menu.settings, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.set1 -> {
+                Toast.makeText(this, "Contact Us Selected", Toast.LENGTH_LONG).show()
+                true
+            }
+            R.id.set2 -> {
+                Toast.makeText(this, "About Us Selected", Toast.LENGTH_LONG).show()
+                true
+            }
+            else -> super.onContextItemSelected(item)
+        }
     }
 
     private fun initGoogleMap(savedInstanceState: Bundle?) {
@@ -192,7 +225,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
             val dialogBuilder = AlertDialog.Builder(this)
 
             // set message of alert dialog
-            dialogBuilder.setMessage("aRE you SURE to park ? ")
+            dialogBuilder.setMessage("Do you watn to park here?")
                 // if the dialog is cancelable
                 .setCancelable(false)
                 // positive button text and action

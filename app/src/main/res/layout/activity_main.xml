@@ -55,7 +55,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/ic_launcher_background"
-            android:onClick="set"
+            android:onClick="openFun"
             android:text="@string/settings"
             android:textColorLink="@android:color/holo_red_dark" />
     </LinearLayout>

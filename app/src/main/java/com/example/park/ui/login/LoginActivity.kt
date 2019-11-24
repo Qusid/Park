@@ -166,7 +166,7 @@ class LoginActivity : AppCompatActivity() {
                     // If sign in fails, display a message to the user.
                     //Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(
-                        baseContext, "Authentication failed stoopid ass bitch .",
+                        baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT
                     ).show()
                     val intent = Intent(this, LoginActivity::class.java)
