@@ -117,7 +117,14 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
                 true
             }
             R.id.set2 -> {
-                Toast.makeText(this, "About Us Selected", Toast.LENGTH_LONG).show()
+                val about = AlertDialog.Builder(this)
+                about.setTitle("About us")
+                about.setMessage("We are students at Lakehead University. For any queries, contact us: \n sgupta13@lakeheadu.ca \n gvira@lakeheadu.ca")
+                about.setNegativeButton("OK", DialogInterface.OnClickListener{dialog, id ->
+
+                })
+                about.create()
+                about.show()
                 true
             }
             else -> super.onContextItemSelected(item)
@@ -297,7 +304,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
             // create dialog box
             val alert = dialogBuilder.create()
             // set title for alert dialog box
-            alert.setTitle("AlertDialogExample")
+            alert.setTitle("Park?")
             // show alert dialog
             alert.show()
         }
