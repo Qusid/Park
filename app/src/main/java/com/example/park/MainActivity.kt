@@ -62,6 +62,22 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         supportActionBar?.hide()
 
 
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+        val rootRef = FirebaseDatabase.getInstance().reference
+        val uidRef = rootRef.child("users").child(uid)
+        val valueEventListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val user = dataSnapshot.getValue(User::class.java)
+                if(user==null){
+                    button3.setEnabled(false)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Log.d(TAG, databaseError.message) //Don't ignore errors!
+            }
+        }
+        uidRef.addListenerForSingleValueEvent(valueEventListener)
 
 
 
@@ -239,7 +255,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
             val dialogBuilder = AlertDialog.Builder(this)
 
             // set message of alert dialog
-            dialogBuilder.setMessage("Do you watn to park here?")
+            dialogBuilder.setMessage("Do you want to park here?")
                 // if the dialog is cancelable
                 .setCancelable(false)
                 // positive button text and action
@@ -297,7 +313,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         var mapp : GoogleMap?  = Mapp
         if(Mapp!=null)
         Mapp.addMarker(MarkerOptions().position(LatLng(lat,long)).title("Car Parked here!!")).showInfoWindow()
-
+        Mapp!!.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat,long),19f))
 
 
     }
