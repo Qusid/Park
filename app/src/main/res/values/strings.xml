@@ -31,4 +31,13 @@
     <string name="settings">Settings</string>
     <string name="loc">Locate</string>
     <string name="locate">Locate</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="already_a_member_n_login">Already a member?  Login</string>
+
+    <string name="login">Login</string>
+    <string name="no_account_yet_n_sign_up">No account yet?  Sign Up</string>
+    <string name="todo">TODO</string>
 </resources>
