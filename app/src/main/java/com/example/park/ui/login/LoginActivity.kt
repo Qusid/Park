@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
-
+        login.setEnabled(false)
 
           // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
@@ -75,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK)
 
             //Complete and destroy login activity once successful
-            finish()
+
         })
 
         username.afterTextChanged {

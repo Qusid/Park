@@ -255,8 +255,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         val uidRef = rootRef.child("users").child(uid)
         val valueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val user = dataSnapshot.getValue(User::class.java)
-                markpark(mapet,user!!.lat,user!!.long)
+               val user = dataSnapshot.getValue(User::class.java)
+                   markpark(mapet,user!!.lat,user!!.long)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -296,6 +296,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
                         if(currentFirebaseUser !=null) {
                             writeNewUser(currentFirebaseUser.uid, lat, lng)
                         }
+
+                        Toast.makeText(this, "${lat},${lng}", Toast.LENGTH_LONG).show()
                         markpark(mapet,lat,lng)
 
                     }
@@ -319,9 +321,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         }
 
     private fun writeNewUser(userId: String, Lat: Double, Long: Double) {
-        val user = User(Lat, Long)
+        val paty = User(Lat, Long)
         database = FirebaseDatabase.getInstance().reference
-        database.child("users").child(userId).setValue(user)
+        database.child("users").child(userId).setValue(paty)
     }
 
     fun markpark(Mapp : GoogleMap?,lat: Double,long: Double){
