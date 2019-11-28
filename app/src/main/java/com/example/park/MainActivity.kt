@@ -344,8 +344,15 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
             Mapp.addMarker(MarkerOptions().position(LatLng(48.419366, -89.259444)).title("Almost full")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_ROSE ))
 
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.420911, -89.257416)).title("90% empty : Best choice")).setIcon(BitmapDescriptorFactory.defaultMarker(
-                BitmapDescriptorFactory.HUE_BLUE ))
+
+            val marker = Mapp.addMarker(MarkerOptions()
+                     .position(LatLng(48.420911, -89.257416))
+                     .title("90% empty : Best choice")
+                     .icon(BitmapDescriptorFactory
+                     .defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
+            marker.showInfoWindow()
+
+
 
             Mapp.addMarker(MarkerOptions().position(LatLng(48.419610, -89.261033)).title("Almost full")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_RED ))
