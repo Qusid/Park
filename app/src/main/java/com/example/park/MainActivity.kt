@@ -337,23 +337,25 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
     fun Freespots(Mapp : GoogleMap?){
         var mapp : GoogleMap?  = Mapp
         if(Mapp!=null) {
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419909, -89.258683)).title("70% empty")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_GREEN ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.420213, -89.258001))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.420213, -89.258001)).title("80% empty")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_GREEN ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419366, -89.259444))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419366, -89.259444)).title("Almost full")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_ROSE ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.420911, -89.257416))).setIcon(BitmapDescriptorFactory.defaultMarker(
-                BitmapDescriptorFactory.HUE_GREEN ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419610, -89.261033))).setIcon(BitmapDescriptorFactory.defaultMarker(
+
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.420911, -89.257416)).title("90% empty : Best choice")).setIcon(BitmapDescriptorFactory.defaultMarker(
+                BitmapDescriptorFactory.HUE_BLUE ))
+
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419610, -89.261033)).title("Almost full")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_RED ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.421230, -89.258061))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.421230, -89.258061)).title("75% empty")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_GREEN ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.421849, -89.257047))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.421849, -89.257047)).title("30% empty")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_ORANGE ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419610, -89.261033))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419610, -89.261033)).title("Almost full")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_ROSE ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.423099, -89.257353))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.423099, -89.257353)).title("70% empty")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_GREEN ))
 
         }
