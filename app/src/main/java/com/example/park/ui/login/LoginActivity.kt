@@ -137,26 +137,21 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        loading.setVisibility(View.VISIBLE); //to show
+        loading.setVisibility(View.VISIBLE)
+
 
         auth.signInWithEmailAndPassword(username.text.toString(), password.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     // Log.d(TAG, "signInWithEmail:success")
-
-                    Toast.makeText(
-                        baseContext, "Authentic true.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    val user = auth.currentUser
-
-                    Toast.makeText(
-                        baseContext, "Authentic true for ${user}",
-                        Toast.LENGTH_SHORT
-                    ).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+
+                    val user = auth.currentUser
+                    updateUI(user)
+
+
 
                 } else {
                     // If sign in fails, display a message to the user.
@@ -168,6 +163,7 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                     // updateUI(null)
+
                 }
 
                 // ...
