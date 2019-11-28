@@ -33,6 +33,7 @@ import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.Button
 import android.widget.Toast.LENGTH_SHORT
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseUser
@@ -336,11 +337,24 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
     fun Freespots(Mapp : GoogleMap?){
         var mapp : GoogleMap?  = Mapp
         if(Mapp!=null) {
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655)))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655)))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655)))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655)))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655)))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655))).setIcon(BitmapDescriptorFactory.defaultMarker(
+                BitmapDescriptorFactory.HUE_GREEN ))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.420213, -89.258001))).setIcon(BitmapDescriptorFactory.defaultMarker(
+                BitmapDescriptorFactory.HUE_GREEN ))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419366, -89.259444))).setIcon(BitmapDescriptorFactory.defaultMarker(
+                BitmapDescriptorFactory.HUE_ROSE ))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.420911, -89.257416))).setIcon(BitmapDescriptorFactory.defaultMarker(
+                BitmapDescriptorFactory.HUE_GREEN ))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419610, -89.261033))).setIcon(BitmapDescriptorFactory.defaultMarker(
+                BitmapDescriptorFactory.HUE_RED ))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.421230, -89.258061))).setIcon(BitmapDescriptorFactory.defaultMarker(
+                BitmapDescriptorFactory.HUE_GREEN ))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.421849, -89.257047))).setIcon(BitmapDescriptorFactory.defaultMarker(
+                BitmapDescriptorFactory.HUE_ORANGE ))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419610, -89.261033))).setIcon(BitmapDescriptorFactory.defaultMarker(
+                BitmapDescriptorFactory.HUE_ROSE ))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.423099, -89.257353))).setIcon(BitmapDescriptorFactory.defaultMarker(
+                BitmapDescriptorFactory.HUE_GREEN ))
 
         }
         else
