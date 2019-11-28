@@ -14,13 +14,13 @@
         android:paddingRight="24dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
+            android:layout_width="126dp"
+            android:layout_height="102dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="25dp"
+            android:contentDescription="@string/todo"
             android:onClick="goToMain"
-            android:src="@mipmap/ic_launcher_round"
-            android:contentDescription="@string/todo" />
+            android:src="@mipmap/ic_launcher_round" />
 
         <!-- Email Label -->
 
