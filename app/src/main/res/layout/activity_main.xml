@@ -21,7 +21,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="93dp"
-        android:background="@color/common_google_signin_btn_text_dark_default"
+        android:background="@color/colorAccent"
         android:hapticFeedbackEnabled="true"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,7 +35,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#00FEC100"
+            android:background="@color/colorAccent"
             android:onClick="parkout"
             android:text="@string/locate" />
 
@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@android:color/holo_blue_bright"
+            android:backgroundTint="#17B0F0"
             android:onClick="park"
             android:text="@string/app_name" />
 
@@ -54,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#00FEC100"
+            android:background="@color/colorAccent"
             android:onClick="openFun"
             android:text="@string/settings"
             android:textColorLink="@android:color/holo_red_dark" />

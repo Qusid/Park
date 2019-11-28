@@ -62,6 +62,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         supportActionBar?.hide()
 
 
+
+
+
+
+
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val rootRef = FirebaseDatabase.getInstance().reference
         val uidRef = rootRef.child("users").child(uid)
@@ -174,6 +179,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
             Toast.makeText(this@MainActivity, "no permission", Toast.LENGTH_SHORT).show()
         }
         print(true)
+        Freespots(mapet)
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -324,6 +330,21 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         Mapp!!.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat,long),19f))
 
 
+    }
+
+
+    fun Freespots(Mapp : GoogleMap?){
+        var mapp : GoogleMap?  = Mapp
+        if(Mapp!=null) {
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655)))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655)))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655)))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655)))
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655)))
+
+        }
+        else
+            Toast.makeText(this, "map null", Toast.LENGTH_LONG).show()
     }
 
 }

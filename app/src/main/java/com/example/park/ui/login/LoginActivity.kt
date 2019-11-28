@@ -127,11 +127,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // Go To Main Screen
-    fun goToMain(view: View) {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        //ffgit
-    }
+
 
     fun updateUI(currentUser: FirebaseUser?){
         if(currentUser!=null){
