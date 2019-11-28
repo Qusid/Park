@@ -118,6 +118,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         return when (item.itemId) {
             R.id.set1 -> {
                 FirebaseAuth.getInstance().signOut()
+                finish()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 true
