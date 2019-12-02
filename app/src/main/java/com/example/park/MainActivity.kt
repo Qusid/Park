@@ -113,6 +113,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         return when (item.itemId) {
             R.id.set1 -> {
                 FirebaseAuth.getInstance().signOut()
+                finish()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 true
@@ -241,8 +242,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         val uidRef = rootRef.child("users").child(uid)
         val valueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val user = dataSnapshot.getValue(User::class.java)
-                markpark(mapet,user!!.lat,user!!.long)
+               val user = dataSnapshot.getValue(User::class.java)
+                   markpark(mapet,user!!.lat,user!!.long)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -282,6 +283,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
                         if(currentFirebaseUser !=null) {
                             writeNewUser(currentFirebaseUser.uid, lat, lng)
                         }
+
+                        Toast.makeText(this, "${lat},${lng}", Toast.LENGTH_LONG).show()
                         markpark(mapet,lat,lng)
 
                     }
@@ -305,9 +308,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         }
 
     private fun writeNewUser(userId: String, Lat: Double, Long: Double) {
-        val user = User(Lat, Long)
+        val paty = User(Lat, Long)
         database = FirebaseDatabase.getInstance().reference
-        database.child("users").child(userId).setValue(user)
+        database.child("users").child(userId).setValue(paty)
     }
 
     fun markpark(Mapp : GoogleMap?,lat: Double,long: Double){
@@ -324,23 +327,32 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
     fun Freespots(Mapp : GoogleMap?){
         var mapp : GoogleMap?  = Mapp
         if(Mapp!=null) {
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419908, -89.258655))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419909, -89.258683)).title("70% empty")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_GREEN ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.420213, -89.258001))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.420213, -89.258001)).title("80% empty")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_GREEN ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419366, -89.259444))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419366, -89.259444)).title("Almost full")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_ROSE ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.420911, -89.257416))).setIcon(BitmapDescriptorFactory.defaultMarker(
-                BitmapDescriptorFactory.HUE_GREEN ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419610, -89.261033))).setIcon(BitmapDescriptorFactory.defaultMarker(
+
+
+            val marker = Mapp.addMarker(MarkerOptions()
+                     .position(LatLng(48.420911, -89.257416))
+                     .title("90% empty : Best choice")
+                     .icon(BitmapDescriptorFactory
+                     .defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
+            marker.showInfoWindow()
+
+
+
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419610, -89.261033)).title("Almost full")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_RED ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.421230, -89.258061))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.421230, -89.258061)).title("75% empty")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_GREEN ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.421849, -89.257047))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.421849, -89.257047)).title("30% empty")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_ORANGE ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.419610, -89.261033))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.419610, -89.261033)).title("Almost full")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_ROSE ))
-            Mapp.addMarker(MarkerOptions().position(LatLng(48.423099, -89.257353))).setIcon(BitmapDescriptorFactory.defaultMarker(
+            Mapp.addMarker(MarkerOptions().position(LatLng(48.423099, -89.257353)).title("70% empty")).setIcon(BitmapDescriptorFactory.defaultMarker(
                 BitmapDescriptorFactory.HUE_GREEN ))
 
         }
