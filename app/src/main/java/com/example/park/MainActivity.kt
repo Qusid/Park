@@ -61,12 +61,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-
-
-
-
-
-
+        
 
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
         val rootRef = FirebaseDatabase.getInstance().reference
@@ -125,7 +120,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
             R.id.set2 -> {
                 val about = AlertDialog.Builder(this)
                 about.setTitle("About us")
-                about.setMessage("We are students at Lakehead University. For any queries, contact us: \n sgupta13@lakeheadu.ca \n gvira@lakeheadu.ca")
+                about.setMessage("We are students at Lakehead University. For any queries, contact us: \n sgupta13@lakeheadu.ca \n gvira@lakeheadu.ca\n hgill8@lakeheadu.ca")
                 about.setNegativeButton("OK", DialogInterface.OnClickListener{dialog, id ->
 
                 })
@@ -155,14 +150,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback  {
         //test push
 
     }
-
-
-
-
-
-
-
-
 
 
     override fun onMapReady(map: GoogleMap) {
